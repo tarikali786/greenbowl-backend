@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 import datetime
-
+import dj_database_url
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -48,6 +48,7 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
      "corsheaders.middleware.CorsMiddleware",
+      'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -56,6 +57,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'backend.urls'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 TEMPLATES = [
     {
@@ -80,23 +82,28 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
+
+DATABASES = {
+    'default': dj_database_url.config(default='postgresql://greenbowl_user:qFtXDyt5p6elk1of2NHnRW8SH1hjJXYR@dpg-ctshjllumphs73fmmd60-a.oregon-postgres.render.com/greenbowl')
+}
+
 # DATABASES = {
 #     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
+#         'ENGINE': 'django.db.backends.postgresql',  # Use PostgreSQL backend
+#         'NAME': 'your_db_name',  # The name of your database
+#         'USER': 'your_db_user',  # Your PostgreSQL username
+#         'PASSWORD': 'your_db_password',  # Your PostgreSQL password
+#         'HOST': 'localhost',  # Set to your PostgreSQL server address
+#         'PORT': '5432',  # Default port for PostgreSQL
 #     }
 # }
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'tarik786$greenBowl',  
-        'USER': 'tarik786',         
-        'PASSWORD': 'Adil2104',      
-        'HOST': 'tarik786.mysql.pythonanywhere-services.com',  
-        'PORT': '3306',                  # Default MySQL port
-    }
-}
 
 
 # Password validation
