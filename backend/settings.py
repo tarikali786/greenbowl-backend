@@ -102,11 +102,10 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 DATABASES = {
     'default': dj_database_url.config(
         default=os.getenv('DATABASE_URL'),
-        conn_max_age=600,
-        sslmode='require'  # Explicitly require SSL
+        conn_max_age=600,   # Keeps DB connections open longer to improve performance
+        ssl_require=True     # Ensures SSL is enforced from the DATABASE_URL
     )
 }
-
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 
