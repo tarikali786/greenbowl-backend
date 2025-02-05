@@ -1,0 +1,937 @@
+[
+    {
+        "model": "salad.ingredient",
+        "pk": 1,
+        "fields": {
+            "uid": "56321ff9-b507-484e-860e-4772c20ac51f",
+            "created_at": "2025-01-20T06:18:10.414Z",
+            "updated_at": "2025-01-20T06:18:10.414Z",
+            "name": "Lettuce",
+            "price": "300.00",
+            "calories": "5.00",
+            "weight": "100.000",
+            "category": "base",
+            "description": "A low-calorie leafy green that adds a crisp, refreshing texture to any salad.",
+            "image": "ingredient/20250120061810.webp",
+            "available": true
+        }
+    },
+    {
+        "model": "salad.ingredient",
+        "pk": 2,
+        "fields": {
+            "uid": "941f08e4-bb55-4202-9bbe-94e8db59162c",
+            "created_at": "2025-01-20T06:18:12.740Z",
+            "updated_at": "2025-01-20T06:18:12.740Z",
+            "name": "Lettuce",
+            "price": "300.00",
+            "calories": "5.00",
+            "weight": "100.000",
+            "category": "base",
+            "description": "A low-calorie leafy green that adds a crisp, refreshing texture to any salad.",
+            "image": "ingredient/20250120061812.webp",
+            "available": true
+        }
+    },
+    {
+        "model": "salad.ingredient",
+        "pk": 3,
+        "fields": {
+            "uid": "c316cd07-c33f-4f89-9b20-bd22acd5164f",
+            "created_at": "2025-01-20T06:19:03.029Z",
+            "updated_at": "2025-01-20T06:19:03.029Z",
+            "name": "Spinach",
+            "price": "350.00",
+            "calories": "23.00",
+            "weight": "80.000",
+            "category": "base",
+            "description": "Packed with iron and antioxidants, spinach is a nutrient-rich base for your salad.",
+            "image": "ingredient/20250120061903.webp",
+            "available": true
+        }
+    },
+    {
+        "model": "salad.ingredient",
+        "pk": 4,
+        "fields": {
+            "uid": "867929e6-58e1-4ba8-bcb9-1baf91c88317",
+            "created_at": "2025-01-20T06:19:04.411Z",
+            "updated_at": "2025-01-20T06:19:04.411Z",
+            "name": "Spinach",
+            "price": "350.00",
+            "calories": "23.00",
+            "weight": "80.000",
+            "category": "base",
+            "description": "Packed with iron and antioxidants, spinach is a nutrient-rich base for your salad.",
+            "image": "ingredient/20250120061904.webp",
+            "available": true
+        }
+    },
+    {
+        "model": "salad.ingredient",
+        "pk": 5,
+        "fields": {
+            "uid": "fa21c315-986b-488b-a158-818118d742dc",
+            "created_at": "2025-01-20T07:26:46.066Z",
+            "updated_at": "2025-01-20T07:26:46.066Z",
+            "name": "Quinoa",
+            "price": "700.00",
+            "calories": "120.00",
+            "weight": "40.000",
+            "category": "base",
+            "description": "A protein-rich grain that adds a chewy texture and a nutty flavor to your salad.",
+            "image": "ingredient/20250120072646.jpg",
+            "available": true
+        }
+    },
+    {
+        "model": "salad.ingredient",
+        "pk": 6,
+        "fields": {
+            "uid": "ee6ba45a-de83-42bd-97a4-5519311c08a0",
+            "created_at": "2025-01-20T07:33:19.579Z",
+            "updated_at": "2025-01-20T07:33:19.579Z",
+            "name": "Arugula",
+            "price": "400.00",
+            "calories": "25.00",
+            "weight": "65.000",
+            "category": "base",
+            "description": "A peppery, flavorful green that adds a zesty bite to your salad.",
+            "image": "ingredient/20250120073319.jpg",
+            "available": true
+        }
+    },
+    {
+        "model": "salad.ingredient",
+        "pk": 7,
+        "fields": {
+            "uid": "b42d8714-0a6f-48a4-b022-fb8af59075ca",
+            "created_at": "2025-01-20T07:35:09.567Z",
+            "updated_at": "2025-01-20T07:35:09.567Z",
+            "name": "Kale",
+            "price": "500.00",
+            "calories": "49.00",
+            "weight": "23.000",
+            "category": "base",
+            "description": "Known for its high vitamin content, kale is a nutrient-dense base option.",
+            "image": "ingredient/20250120073509.jpg",
+            "available": true
+        }
+    },
+    {
+        "model": "salad.ingredient",
+        "pk": 8,
+        "fields": {
+            "uid": "dac3d7c7-4545-40af-b32f-6d494148d878",
+            "created_at": "2025-01-20T07:35:14.048Z",
+            "updated_at": "2025-01-20T07:35:14.048Z",
+            "name": "Kale",
+            "price": "500.00",
+            "calories": "49.00",
+            "weight": "23.000",
+            "category": "base",
+            "description": "Known for its high vitamin content, kale is a nutrient-dense base option.",
+            "image": "ingredient/20250120073514.jpg",
+            "available": true
+        }
+    },
+    {
+        "model": "salad.ingredient",
+        "pk": 9,
+        "fields": {
+            "uid": "afdebb10-062f-4678-b87f-686caf74c682",
+            "created_at": "2025-01-20T07:36:08.118Z",
+            "updated_at": "2025-01-20T07:36:08.118Z",
+            "name": "Cabbage",
+            "price": "20.00",
+            "calories": "25.00",
+            "weight": "234.000",
+            "category": "base",
+            "description": "A crunchy and fibrous base that adds volume and texture to your salad.",
+            "image": "ingredient/20250120073608.jpg",
+            "available": true
+        }
+    },
+    {
+        "model": "salad.ingredient",
+        "pk": 10,
+        "fields": {
+            "uid": "4606c5e8-ffa9-4f40-bece-f1576bee215d",
+            "created_at": "2025-01-20T07:37:07.869Z",
+            "updated_at": "2025-01-20T07:37:07.869Z",
+            "name": "Mixed Greens",
+            "price": "600.00",
+            "calories": "15.00",
+            "weight": "56.000",
+            "category": "base",
+            "description": "A combination of lettuce, spinach, and other leafy greens for a diverse and flavorful salad base.",
+            "image": "ingredient/20250120073707.jpg",
+            "available": true
+        }
+    },
+    {
+        "model": "salad.ingredient",
+        "pk": 11,
+        "fields": {
+            "uid": "c1f5785c-7d52-4b84-a0a8-198cbcd32e1b",
+            "created_at": "2025-01-20T07:37:56.943Z",
+            "updated_at": "2025-01-20T07:37:56.943Z",
+            "name": "Chard",
+            "price": "45.00",
+            "calories": "19.00",
+            "weight": "23.000",
+            "category": "base",
+            "description": "A colorful leafy green that adds a mild, earthy flavor to your salad.",
+            "image": "ingredient/20250120073756.jpg",
+            "available": true
+        }
+    },
+    {
+        "model": "salad.ingredient",
+        "pk": 12,
+        "fields": {
+            "uid": "6acb9914-b6c6-43da-b288-bd0b9578496a",
+            "created_at": "2025-01-20T07:38:53.414Z",
+            "updated_at": "2025-01-20T07:38:53.414Z",
+            "name": "Rocket",
+            "price": "65.00",
+            "calories": "15.00",
+            "weight": "98.000",
+            "category": "base",
+            "description": "A peppery, crunchy green that gives your salad an extra zing.",
+            "image": "ingredient/20250120073853.jpg",
+            "available": true
+        }
+    },
+    {
+        "model": "salad.ingredient",
+        "pk": 13,
+        "fields": {
+            "uid": "abc068c1-51c6-436a-ad4b-4adba67c2c32",
+            "created_at": "2025-01-20T07:39:38.856Z",
+            "updated_at": "2025-01-20T07:39:38.856Z",
+            "name": "Beet Greens",
+            "price": "55.00",
+            "calories": "43.00",
+            "weight": "123.000",
+            "category": "base",
+            "description": "The leafy tops of beets, which are packed with nutrients and have a slightly sweet flavor.",
+            "image": "ingredient/20250120073938.jpg",
+            "available": true
+        }
+    },
+    {
+        "model": "salad.ingredient",
+        "pk": 14,
+        "fields": {
+            "uid": "ae97f41c-6118-4e14-b0d1-bd124304bedf",
+            "created_at": "2025-01-21T06:49:40.513Z",
+            "updated_at": "2025-01-21T06:49:40.513Z",
+            "name": "cucumber",
+            "price": "34.00",
+            "calories": "16.00",
+            "weight": "123.000",
+            "category": "vegetable",
+            "description": "A hydrating and crunchy vegetable that adds a refreshing taste to any salad.",
+            "image": "ingredient/20250121064940.webp",
+            "available": true
+        }
+    },
+    {
+        "model": "salad.ingredient",
+        "pk": 15,
+        "fields": {
+            "uid": "4f6e0383-3b4a-4b17-b8fd-bb883a739cbb",
+            "created_at": "2025-01-21T06:50:20.210Z",
+            "updated_at": "2025-01-21T06:50:20.210Z",
+            "name": "Carrot",
+            "price": "35.00",
+            "calories": "41.00",
+            "weight": "34.000",
+            "category": "vegetable",
+            "description": "Sweet and crunchy, carrots add a mild sweetness and vibrant color to your salad.",
+            "image": "ingredient/20250121065020.webp",
+            "available": true
+        }
+    },
+    {
+        "model": "salad.ingredient",
+        "pk": 16,
+        "fields": {
+            "uid": "dc788fdd-7e22-409c-8d4e-20958b174b9c",
+            "created_at": "2025-01-21T06:51:13.690Z",
+            "updated_at": "2025-01-21T06:51:13.691Z",
+            "name": "Tomato",
+            "price": "80.00",
+            "calories": "18.00",
+            "weight": "34.000",
+            "category": "vegetable",
+            "description": "Juicy and tangy, tomatoes are a great source of vitamin C and add a burst of flavor.",
+            "image": "ingredient/20250121065113.jpg",
+            "available": true
+        }
+    },
+    {
+        "model": "salad.ingredient",
+        "pk": 17,
+        "fields": {
+            "uid": "9c26422e-c41f-478a-9e67-3a08f19ae8f5",
+            "created_at": "2025-01-21T06:52:15.708Z",
+            "updated_at": "2025-01-21T06:52:15.708Z",
+            "name": "Bell Pepper",
+            "price": "60.00",
+            "calories": "20.00",
+            "weight": "34.000",
+            "category": "vegetable",
+            "description": "Sweet, crunchy, and colorful, bell peppers are packed with vitamins and antioxidants.",
+            "image": "ingredient/20250121065215.jpg",
+            "available": true
+        }
+    },
+    {
+        "model": "salad.ingredient",
+        "pk": 18,
+        "fields": {
+            "uid": "099bd66f-2041-4507-ac95-96561aa281d3",
+            "created_at": "2025-01-21T06:53:14.352Z",
+            "updated_at": "2025-01-21T06:53:14.352Z",
+            "name": "Onion",
+            "price": "23.00",
+            "calories": "40.00",
+            "weight": "320.000",
+            "category": "vegetable",
+            "description": "A pungent and flavorful vegetable that adds depth and zest to your salad.",
+            "image": "",
+            "available": true
+        }
+    },
+    {
+        "model": "salad.ingredient",
+        "pk": 19,
+        "fields": {
+            "uid": "bd4e4a13-2142-47f5-a7ba-4a5a6ad51371",
+            "created_at": "2025-01-21T06:54:01.391Z",
+            "updated_at": "2025-01-21T06:54:01.391Z",
+            "name": "Avocado",
+            "price": "400.00",
+            "calories": "160.00",
+            "weight": "23.000",
+            "category": "vegetable",
+            "description": "Creamy and rich, avocado adds healthy fats and a smooth texture to your salad.",
+            "image": "ingredient/20250121065401.jpg",
+            "available": true
+        }
+    },
+    {
+        "model": "salad.ingredient",
+        "pk": 20,
+        "fields": {
+            "uid": "259668af-12c4-4777-bbc9-b5b49260e5b3",
+            "created_at": "2025-01-21T06:54:55.977Z",
+            "updated_at": "2025-01-21T06:54:55.977Z",
+            "name": "Radish",
+            "price": "30.00",
+            "calories": "16.00",
+            "weight": "23.000",
+            "category": "vegetable",
+            "description": "A spicy and crunchy root vegetable that adds a bit of zing to your salad.",
+            "image": "ingredient/20250121065455.jpg",
+            "available": true
+        }
+    },
+    {
+        "model": "salad.ingredient",
+        "pk": 21,
+        "fields": {
+            "uid": "67800c34-d0d9-47dc-aedf-606af2cbf386",
+            "created_at": "2025-01-21T06:55:29.172Z",
+            "updated_at": "2025-01-21T06:55:29.172Z",
+            "name": "Beetroot",
+            "price": "80.00",
+            "calories": "43.00",
+            "weight": "24.000",
+            "category": "vegetable",
+            "description": "Earthy and sweet, beetroot adds a unique flavor and vibrant color to your salad.",
+            "image": "ingredient/20250121065529.jpg",
+            "available": true
+        }
+    },
+    {
+        "model": "salad.ingredient",
+        "pk": 22,
+        "fields": {
+            "uid": "e08f18ed-ff60-4705-a7d7-d9ee7e975fef",
+            "created_at": "2025-01-21T06:55:57.214Z",
+            "updated_at": "2025-01-21T06:55:57.214Z",
+            "name": "Broccoli",
+            "price": "50.00",
+            "calories": "55.00",
+            "weight": "43.000",
+            "category": "vegetable",
+            "description": "Rich in vitamins and fiber, broccoli adds a crunchy texture and health benefits.",
+            "image": "",
+            "available": true
+        }
+    },
+    {
+        "model": "salad.ingredient",
+        "pk": 23,
+        "fields": {
+            "uid": "1e36c004-cfc8-4edb-9f1a-ab0423f456b2",
+            "created_at": "2025-01-21T06:56:38.652Z",
+            "updated_at": "2025-01-21T06:56:38.652Z",
+            "name": "Cauliflower",
+            "price": "45.00",
+            "calories": "35.00",
+            "weight": "34.000",
+            "category": "vegetable",
+            "description": "Mild and crunchy, cauliflower is a versatile vegetable that blends well in salads.",
+            "image": "ingredient/20250121065638.jpg",
+            "available": true
+        }
+    },
+    {
+        "model": "salad.ingredient",
+        "pk": 24,
+        "fields": {
+            "uid": "7ba69465-3bbc-4eef-b236-c42d6a682431",
+            "created_at": "2025-01-21T06:57:15.516Z",
+            "updated_at": "2025-01-21T06:57:15.516Z",
+            "name": "Zucchini",
+            "price": "30.00",
+            "calories": "17.00",
+            "weight": "65.000",
+            "category": "vegetable",
+            "description": "A mild-flavored vegetable that adds a delicate crunch to your salad.",
+            "image": "ingredient/20250121065715.jpg",
+            "available": true
+        }
+    },
+    {
+        "model": "salad.ingredient",
+        "pk": 25,
+        "fields": {
+            "uid": "dc8d6a79-f129-4335-a5ad-ab9e475c8d51",
+            "created_at": "2025-01-21T06:57:51.202Z",
+            "updated_at": "2025-01-21T06:57:51.202Z",
+            "name": "Sweet Corn",
+            "price": "40.00",
+            "calories": "96.00",
+            "weight": "46.000",
+            "category": "vegetable",
+            "description": "Sweet, juicy kernels that bring a pop of flavor and texture to your salad.",
+            "image": "ingredient/20250121065751.webp",
+            "available": true
+        }
+    },
+    {
+        "model": "salad.ingredient",
+        "pk": 26,
+        "fields": {
+            "uid": "d325e8f5-2f34-48cc-893d-1a19a6e09cdd",
+            "created_at": "2025-01-21T06:58:24.476Z",
+            "updated_at": "2025-01-21T06:58:24.476Z",
+            "name": "Mushrooms",
+            "price": "108.00",
+            "calories": "22.00",
+            "weight": "23.000",
+            "category": "vegetable",
+            "description": "Earthy and savory, mushrooms add a unique depth of flavor to your salad.",
+            "image": "ingredient/20250121065824.jpg",
+            "available": true
+        }
+    },
+    {
+        "model": "salad.ingredient",
+        "pk": 27,
+        "fields": {
+            "uid": "0c59d9aa-cd92-42a8-ba75-ad20c61f3120",
+            "created_at": "2025-01-21T07:01:33.985Z",
+            "updated_at": "2025-01-21T07:01:33.985Z",
+            "name": "Green Beans",
+            "price": "68.00",
+            "calories": "31.00",
+            "weight": "32.000",
+            "category": "vegetable",
+            "description": "Crisp and tender, green beans offer a mild flavor and plenty of fiber.",
+            "image": "ingredient/20250121070133.jfif",
+            "available": true
+        }
+    },
+    {
+        "model": "salad.ingredient",
+        "pk": 28,
+        "fields": {
+            "uid": "1a0c2abd-f967-48f1-a21a-3aba108df979",
+            "created_at": "2025-01-21T07:02:05.835Z",
+            "updated_at": "2025-01-21T07:02:05.835Z",
+            "name": "Spinach",
+            "price": "30.00",
+            "calories": "23.00",
+            "weight": "24.000",
+            "category": "vegetable",
+            "description": "\"A leafy green rich in iron and antioxidants, spinach is a great addition to salads.",
+            "image": "ingredient/20250121070205.jpg",
+            "available": true
+        }
+    },
+    {
+        "model": "salad.ingredient",
+        "pk": 29,
+        "fields": {
+            "uid": "5dc66a37-2469-43e2-b26f-004402ccab29",
+            "created_at": "2025-01-21T07:03:17.971Z",
+            "updated_at": "2025-01-21T07:03:17.971Z",
+            "name": "Peas",
+            "price": "50.00",
+            "calories": "81.00",
+            "weight": "33.000",
+            "category": "vegetable",
+            "description": "Sweet, vibrant peas add both flavor and texture to your salad.",
+            "image": "ingredient/20250121070317.jpg",
+            "available": true
+        }
+    },
+    {
+        "model": "salad.ingredient",
+        "pk": 30,
+        "fields": {
+            "uid": "841bb4fb-0fac-40db-bf69-b87389a1d173",
+            "created_at": "2025-01-21T07:03:58.803Z",
+            "updated_at": "2025-01-21T07:03:58.803Z",
+            "name": "Cabbage",
+            "price": "24.00",
+            "calories": "25.00",
+            "weight": "54.000",
+            "category": "vegetable",
+            "description": "Crunchy and fibrous, cabbage is a low-calorie vegetable perfect for hearty salads.",
+            "image": "ingredient/20250121070358.webp",
+            "available": true
+        }
+    },
+    {
+        "model": "salad.ingredient",
+        "pk": 31,
+        "fields": {
+            "uid": "9666c0e2-c240-4e02-8e4e-9f399e296a1e",
+            "created_at": "2025-01-21T07:04:38.895Z",
+            "updated_at": "2025-01-21T07:04:38.895Z",
+            "name": "Celery",
+            "price": "60.00",
+            "calories": "16.00",
+            "weight": "34.000",
+            "category": "vegetable",
+            "description": "With its crisp texture, celery adds a fresh and light flavor to any salad.",
+            "image": "ingredient/20250121070438.jpg",
+            "available": true
+        }
+    },
+    {
+        "model": "salad.ingredient",
+        "pk": 32,
+        "fields": {
+            "uid": "424fa6e5-e5cb-4dae-8b71-737414a777a1",
+            "created_at": "2025-01-21T07:05:27.828Z",
+            "updated_at": "2025-01-21T07:05:27.828Z",
+            "name": "Leek",
+            "price": "40.00",
+            "calories": "31.00",
+            "weight": "24.000",
+            "category": "vegetable",
+            "description": "A milder onion flavor, leeks add a delicate taste to salads.",
+            "image": "ingredient/20250121070527.jpg",
+            "available": true
+        }
+    },
+    {
+        "model": "salad.ingredient",
+        "pk": 33,
+        "fields": {
+            "uid": "f8246908-95ac-4e35-9ac8-2cd409c8c352",
+            "created_at": "2025-01-21T07:06:04.602Z",
+            "updated_at": "2025-01-21T07:06:04.602Z",
+            "name": "Asparagus",
+            "price": "60.00",
+            "calories": "20.00",
+            "weight": "44.000",
+            "category": "vegetable",
+            "description": "Tender and slightly sweet, asparagus adds a unique and healthy touch to your salad.",
+            "image": "ingredient/20250121070604.png",
+            "available": true
+        }
+    },
+    {
+        "model": "salad.ingredient",
+        "pk": 34,
+        "fields": {
+            "uid": "42e8ff41-12c7-43ba-85cd-c7afc08905ff",
+            "created_at": "2025-01-21T07:09:07.561Z",
+            "updated_at": "2025-01-21T07:09:07.561Z",
+            "name": "Cheese",
+            "price": "300.00",
+            "calories": "100.00",
+            "weight": "46.000",
+            "category": "topping",
+            "description": "A creamy and savory topping that adds richness and flavor to your salad.",
+            "image": "ingredient/20250121070907.jpg",
+            "available": true
+        }
+    },
+    {
+        "model": "salad.ingredient",
+        "pk": 35,
+        "fields": {
+            "uid": "822d4906-7239-47e3-9bd3-3ad34d11839c",
+            "created_at": "2025-01-21T07:10:18.154Z",
+            "updated_at": "2025-01-21T07:10:18.154Z",
+            "name": "Olives",
+            "price": "80.00",
+            "calories": "115.00",
+            "weight": "32.000",
+            "category": "topping",
+            "description": "Salty and tangy, olives are perfect for adding a Mediterranean touch to your salad.",
+            "image": "ingredient/20250121071018.jpg",
+            "available": true
+        }
+    },
+    {
+        "model": "salad.ingredient",
+        "pk": 36,
+        "fields": {
+            "uid": "f8f0c810-bdf6-4628-9a51-f937527d51e9",
+            "created_at": "2025-01-21T07:10:57.566Z",
+            "updated_at": "2025-01-21T07:10:57.566Z",
+            "name": "Nuts",
+            "price": "500.00",
+            "calories": "200.00",
+            "weight": "100.000",
+            "category": "topping",
+            "description": "A crunchy, protein-packed topping that adds texture and flavor.",
+            "image": "ingredient/20250121071057.jpg",
+            "available": true
+        }
+    },
+    {
+        "model": "salad.ingredient",
+        "pk": 37,
+        "fields": {
+            "uid": "e505c47d-e051-4a3d-baa6-bc6ebc715978",
+            "created_at": "2025-01-21T07:11:43.406Z",
+            "updated_at": "2025-01-21T07:11:43.406Z",
+            "name": "Cranberries",
+            "price": "60.00",
+            "calories": "80.00",
+            "weight": "65.000",
+            "category": null,
+            "description": "Sweet and tangy dried cranberries add a burst of flavor and color.",
+            "image": "ingredient/20250121071143.jpg",
+            "available": true
+        }
+    },
+    {
+        "model": "salad.ingredient",
+        "pk": 38,
+        "fields": {
+            "uid": "59ecf5f6-44ca-4824-936b-f4a43452b10f",
+            "created_at": "2025-01-21T07:12:15.629Z",
+            "updated_at": "2025-01-21T07:12:15.629Z",
+            "name": "Chickpeas",
+            "price": "120.00",
+            "calories": "164.00",
+            "weight": "52.000",
+            "category": "topping",
+            "description": "Crunchy and protein-packed, chickpeas add substance and flavor to your salad.",
+            "image": "ingredient/20250121071215.jpg",
+            "available": true
+        }
+    },
+    {
+        "model": "salad.ingredient",
+        "pk": 39,
+        "fields": {
+            "uid": "f15c2cb8-95e8-4b7b-8fc8-7b6936ef1626",
+            "created_at": "2025-01-21T07:13:07.112Z",
+            "updated_at": "2025-01-21T07:13:07.112Z",
+            "name": "Boiled Egg",
+            "price": "10.00",
+            "calories": "68.00",
+            "weight": "100.000",
+            "category": "topping",
+            "description": "A protein-packed topping that adds richness and a creamy texture to your salad.",
+            "image": "ingredient/20250121071307.webp",
+            "available": true
+        }
+    },
+    {
+        "model": "salad.ingredient",
+        "pk": 40,
+        "fields": {
+            "uid": "f60db56c-365b-4b6c-ad1a-7b87ac78c1a0",
+            "created_at": "2025-01-21T07:13:40.718Z",
+            "updated_at": "2025-01-21T07:13:40.718Z",
+            "name": "Bacon Bits",
+            "price": "60.00",
+            "calories": "150.00",
+            "weight": "265.000",
+            "category": null,
+            "description": "Crispy and smoky, bacon bits add a salty and savory crunch to your salad.",
+            "image": "ingredient/20250121071340.webp",
+            "available": true
+        }
+    },
+    {
+        "model": "salad.ingredient",
+        "pk": 41,
+        "fields": {
+            "uid": "bbfeaebd-8d34-4822-aecf-7d40f5c8b55d",
+            "created_at": "2025-01-21T07:14:11.284Z",
+            "updated_at": "2025-01-21T07:14:11.284Z",
+            "name": "Sunflower Seeds",
+            "price": "60.00",
+            "calories": "180.00",
+            "weight": "62.000",
+            "category": "topping",
+            "description": "A healthy and crunchy topping that adds texture and a mild nutty flavor.",
+            "image": "ingredient/20250121071411.jpg",
+            "available": true
+        }
+    },
+    {
+        "model": "salad.ingredient",
+        "pk": 42,
+        "fields": {
+            "uid": "3fa33e46-f84d-46ce-9ecf-6d4762a1bdc5",
+            "created_at": "2025-01-21T07:14:49.239Z",
+            "updated_at": "2025-01-21T07:14:49.239Z",
+            "name": "Avocado",
+            "price": "600.00",
+            "calories": "160.00",
+            "weight": "100.000",
+            "category": "topping",
+            "description": "Creamy and rich, avocado adds healthy fats and a smooth texture to your salad.",
+            "image": "ingredient/20250121071449.jpg",
+            "available": true
+        }
+    },
+    {
+        "model": "salad.ingredient",
+        "pk": 43,
+        "fields": {
+            "uid": "42232e2e-e510-40bd-9c3b-9b7772b00e47",
+            "created_at": "2025-01-21T07:16:22.524Z",
+            "updated_at": "2025-01-21T07:16:22.524Z",
+            "name": "Balsamic Vinaigrette",
+            "price": "50.00",
+            "calories": "50.00",
+            "weight": "65.000",
+            "category": "dressing",
+            "description": "A tangy and slightly sweet dressing made from balsamic vinegar and olive oil.",
+            "image": "ingredient/20250121071622.jpg",
+            "available": true
+        }
+    },
+    {
+        "model": "salad.ingredient",
+        "pk": 44,
+        "fields": {
+            "uid": "69f02efc-3266-4673-994a-0444bf2c98e4",
+            "created_at": "2025-01-21T07:17:23.401Z",
+            "updated_at": "2025-01-21T07:17:23.401Z",
+            "name": "Honey Mustard",
+            "price": "600.00",
+            "calories": "100.00",
+            "weight": "34.000",
+            "category": "dressing",
+            "description": "A sweet and tangy dressing made with honey, mustard, and vinegar.",
+            "image": "ingredient/20250121071723.jpg",
+            "available": true
+        }
+    },
+    {
+        "model": "salad.ingredient",
+        "pk": 45,
+        "fields": {
+            "uid": "8396b8ee-e2db-4f3b-a58b-1660b03ecfcc",
+            "created_at": "2025-01-21T07:18:50.477Z",
+            "updated_at": "2025-01-21T07:18:50.477Z",
+            "name": "Italian Dressing",
+            "price": "50.00",
+            "calories": "80.00",
+            "weight": "6.000",
+            "category": "dressing",
+            "description": "A zesty and herbaceous dressing with olive oil, vinegar, and Italian spices.",
+            "image": "ingredient/20250121071850.jfif",
+            "available": true
+        }
+    },
+    {
+        "model": "salad.ingredient",
+        "pk": 46,
+        "fields": {
+            "uid": "e4ee3f46-d2b6-4b3f-87ad-0dd0863a6623",
+            "created_at": "2025-01-21T07:19:37.908Z",
+            "updated_at": "2025-01-21T07:19:37.908Z",
+            "name": "Blue Cheese",
+            "price": "500.00",
+            "calories": "150.00",
+            "weight": "52.000",
+            "category": "dressing",
+            "description": "A rich, creamy dressing with crumbled blue cheese and a tangy flavor.",
+            "image": "ingredient/20250121071937.jpg",
+            "available": true
+        }
+    },
+    {
+        "model": "salad.ingredient",
+        "pk": 47,
+        "fields": {
+            "uid": "677d0232-8f5e-4322-bd94-d81acc4bc744",
+            "created_at": "2025-01-21T07:20:09.916Z",
+            "updated_at": "2025-01-21T07:20:09.916Z",
+            "name": "Thousand Island",
+            "price": "65.00",
+            "calories": "120.00",
+            "weight": "123.000",
+            "category": "dressing",
+            "description": "A creamy and tangy dressing with ketchup, mayonnaise, and relish.",
+            "image": "ingredient/20250121072009.jpg",
+            "available": true
+        }
+    },
+    {
+        "model": "salad.ingredient",
+        "pk": 48,
+        "fields": {
+            "uid": "9e8f0233-a7ae-4969-a761-b6f718685eef",
+            "created_at": "2025-01-21T07:20:46.155Z",
+            "updated_at": "2025-01-21T07:20:46.155Z",
+            "name": "Olive Oil & Lemon",
+            "price": "60.00",
+            "calories": "120.00",
+            "weight": "23.000",
+            "category": "dressing",
+            "description": "A light and fresh dressing made with olive oil and a hint of lemon juice.",
+            "image": "ingredient/20250121072046.jpg",
+            "available": true
+        }
+    },
+    {
+        "model": "salad.ingredient",
+        "pk": 49,
+        "fields": {
+            "uid": "a1ab7473-7bd0-4f94-811d-8c5f66812014",
+            "created_at": "2025-01-21T07:21:14.115Z",
+            "updated_at": "2025-01-21T07:21:14.115Z",
+            "name": "Poppy Seed Dressing",
+            "price": "320.00",
+            "calories": "130.00",
+            "weight": "12.000",
+            "category": "dressing",
+            "description": "A sweet, tangy, and slightly crunchy dressing with poppy seeds.",
+            "image": "ingredient/20250121072114.webp",
+            "available": true
+        }
+    },
+    {
+        "model": "salad.ingredient",
+        "pk": 50,
+        "fields": {
+            "uid": "d95b1ea2-658d-4ac6-b2f0-9f11b8364de0",
+            "created_at": "2025-01-21T07:22:39.761Z",
+            "updated_at": "2025-01-21T07:22:39.761Z",
+            "name": "Lemon",
+            "price": "500.00",
+            "calories": "5.00",
+            "weight": "100.000",
+            "category": "extra",
+            "description": "Freshly squeezed for a zesty flavor boost.",
+            "image": "ingredient/20250121072239.jpg",
+            "available": true
+        }
+    },
+    {
+        "model": "salad.ingredient",
+        "pk": 51,
+        "fields": {
+            "uid": "ab5cb7be-91a1-4425-817a-ec483ee77c97",
+            "created_at": "2025-01-21T07:23:11.542Z",
+            "updated_at": "2025-01-21T07:23:11.542Z",
+            "name": "Black Salt",
+            "price": "100.00",
+            "calories": "0.00",
+            "weight": "32.000",
+            "category": "extra",
+            "description": "Adds a tangy, earthy flavor to your salad.",
+            "image": "ingredient/20250121072311.jpg",
+            "available": true
+        }
+    },
+    {
+        "model": "salad.ingredient",
+        "pk": 52,
+        "fields": {
+            "uid": "7b11d245-f7df-4e1d-9024-cf141f4f73c0",
+            "created_at": "2025-01-21T07:23:44.875Z",
+            "updated_at": "2025-01-21T07:23:44.875Z",
+            "name": "Chili Flakes",
+            "price": "150.00",
+            "calories": "6.00",
+            "weight": "24.000",
+            "category": "extra",
+            "description": "For a touch of heat and spice.",
+            "image": "ingredient/20250121072344.jpg",
+            "available": true
+        }
+    },
+    {
+        "model": "salad.ingredient",
+        "pk": 53,
+        "fields": {
+            "uid": "d87fb0ef-3f3d-423b-8740-863eab24c93b",
+            "created_at": "2025-01-21T07:24:18.560Z",
+            "updated_at": "2025-01-21T07:24:18.560Z",
+            "name": "Mint Leaves",
+            "price": "400.00",
+            "calories": "2.00",
+            "weight": "12.000",
+            "category": "extra",
+            "description": "Refreshing and aromatic for a fresh finish.",
+            "image": "ingredient/20250121072418.jpg",
+            "available": true
+        }
+    },
+    {
+        "model": "salad.ingredient",
+        "pk": 54,
+        "fields": {
+            "uid": "cf63fce2-36f3-4531-af3b-84d4bb508683",
+            "created_at": "2025-01-21T07:24:51.256Z",
+            "updated_at": "2025-01-21T07:24:51.256Z",
+            "name": "Honey",
+            "price": "500.00",
+            "calories": "64.00",
+            "weight": "23.000",
+            "category": "extra",
+            "description": "A natural sweetener to balance flavors.",
+            "image": "ingredient/20250121072451.webp",
+            "available": true
+        }
+    },
+    {
+        "model": "salad.ingredient",
+        "pk": 55,
+        "fields": {
+            "uid": "dadd157a-a981-4aae-b7c0-ce41a304bc2f",
+            "created_at": "2025-01-21T07:25:29.442Z",
+            "updated_at": "2025-01-21T07:25:29.442Z",
+            "name": "Chilies",
+            "price": "120.00",
+            "calories": "40.00",
+            "weight": "34.000",
+            "category": null,
+            "description": "Fresh and spicy for those who love heat.",
+            "image": "ingredient/20250121072529.jpg",
+            "available": true
+        }
+    }
+]
