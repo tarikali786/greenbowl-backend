@@ -30,7 +30,6 @@ class CreatePaymentIntent(APIView):
                     "Name": validated_data['name'],
                     "Email": validated_data['email'],
                     "Phone": validated_data['phone'],
-                    "Company Name": validated_data.get('company_name', ''),
                 },
                 shipping={
                     "name": validated_data['name'],
