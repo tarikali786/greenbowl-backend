@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from account.models import Account
+from account.models import Account, UserAddress
 
 class VarifyNumberSerializer(serializers.Serializer):
     phone = serializers.CharField()
@@ -15,3 +15,14 @@ class LoginSerializer(serializers.ModelSerializer):
     class Meta:
         model = Account
         fields = ['uid','name',"phone","profile"]
+
+
+
+class UserAddressSerializer(serializers.ModelSerializer):
+    user = AccountSerializer(read_only=True)
+    class Meta:
+        model = UserAddress
+        fields = '__all__'
+        read_only_fields = ['user']
+
+    

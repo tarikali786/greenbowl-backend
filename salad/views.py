@@ -22,19 +22,18 @@ class CreatePaymentIntent(APIView):
         try:
             payment_intent = stripe.PaymentIntent.create(
                 amount=validated_data['amount'],
-                currency=validated_data['currency'],
+                currency= "INR",
                 payment_method_types=['card'],
-                description=validated_data['description'],
+                description="Order Salad",
                 receipt_email=validated_data['email'],
                 metadata={
-                    "First Name": validated_data['fname'],
-                    "Last Name": validated_data['lname'],
+                    "Name": validated_data['name'],
                     "Email": validated_data['email'],
                     "Phone": validated_data['phone'],
                     "Company Name": validated_data.get('company_name', ''),
                 },
                 shipping={
-                    "name": f"{validated_data['fname']} {validated_data['lname']}",
+                    "name": validated_data['name'],
                     "address": {
                         "line1": validated_data['address'].get('line1', ''),
                         "city": validated_data['address'].get('city', ''),

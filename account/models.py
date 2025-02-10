@@ -30,20 +30,22 @@ class Account(AbstractUser, UUIDMixin):
     
     
 
-
 class UserAddress(UUIDMixin):
     user = models.ForeignKey(Account, on_delete=models.CASCADE, related_name="addresses")
-    country = models.CharField(max_length=100,blank=True, null=True)
-    postal_code = models.CharField(max_length=20, blank=True, null=True)
-    state = models.CharField(max_length=100 ,blank=True, null=True)
-    post= models.CharField(max_length=200, blank=True, null=True)
-    address_line_1 = models.CharField(max_length=255, verbose_name="Address Line 1")
+    street_address = models.CharField(max_length=255, blank=True, null=True, verbose_name="Street Address")
+    street_address2 = models.CharField(max_length=255, blank=True, null=True, verbose_name="Street Address 2")
     city = models.CharField(max_length=100, blank=True, null=True)
-    is_primary = models.BooleanField(default=False,blank=True, null=True)
+    state = models.CharField(max_length=100, blank=True, null=True)
+    district = models.CharField(max_length=255, blank=True, null=True)  
+    country = models.CharField(max_length=100, blank=True, null=True)
+    pin_code = models.CharField(max_length=20, blank=True, null=True)
+    
 
     class Meta:
         verbose_name = "User Address"
         verbose_name_plural = "User Addresses"
+        ordering = ['-created_at', '-updated_at']
 
     def __str__(self) -> str:
-        return f"{self.address_line_1}, {self.city}, {self.state}, {self.country}"
+        return f"{self.street_address}, {self.city}, {self.state}, {self.country}"
+    

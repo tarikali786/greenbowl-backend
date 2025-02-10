@@ -1,3 +1,4 @@
+from django.core.exceptions import ValidationError
 import requests
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -7,7 +8,7 @@ from account.serializers import *
 from django.db.models import Q
 from rest_framework import status
 import datetime
-
+from rest_framework import viewsets
 import pytz
 from core.utils import  generate_otp, store_otp, get_stored_otp, send_otp_sms
 from rest_framework_simplejwt.tokens import RefreshToken
@@ -133,7 +134,6 @@ class AccountGoogleLogin(APIView):
     permission_classes = [IsAuthenticated]
 
     def post(self, request):
-        # Validate and get phone number
         serializer = VarifyNumberSerializer(data=request.data)
         if not serializer.is_valid():
             return Response({"error": "Invalid phone number data."}, status=400)
@@ -193,6 +193,9 @@ class SendOTPCode(APIView):
         return Response({'error': 'Failed to send OTP.'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 class VerifyOTPCode(APIView):
+
+
+
     """API to verify OTP and authenticate user."""
     permission_classes = [IsAuthenticated]
 
@@ -243,3 +246,44 @@ class VerifyOTPCode(APIView):
             }, status=status.HTTP_200_OK)
 
         return Response({'message': 'Invalid OTP!'}, status=status.HTTP_400_BAD_REQUEST)
+    
+
+
+class CreateUserAddressAPIView(APIView):
+    permission_classes = [IsAuthenticated]  # Ensure the user is authenticated
+
+    def post(self, request):
+        """
+        Create a new user address.
+        """
+        data = request.data
+        user= request.user
+        print(user)
+        # Serialize the data
+        serializer = UserAddressSerializer(data=data)
+        
+        # Validate and save the data
+        if serializer.is_valid():
+            try:
+                data =serializer.save()
+                return Response({"message": "Address created successfully.","data":serializer.data}, status=status.HTTP_201_CREATED)
+            except ValidationError as e:
+                return Response({"detail": str(e)}, status=status.HTTP_400_BAD_REQUEST)
+        
+        # If validation fails, return the errors
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)    
+    
+
+class UserAddressViewSet(viewsets.ModelViewSet):
+    queryset = UserAddress.objects.all()
+    serializer_class = UserAddressSerializer
+    permission_classes = [IsAuthenticated]
+    lookup_field = 'uid'
+
+    def get_queryset(self):
+        """Filter addresses to only return those belonging to the logged-in user."""
+        return self.queryset.filter(user=self.request.user)
+
+    def perform_create(self, serializer):
+        """Assign the logged-in user to the address before saving."""
+        serializer.save(user=self.request.user)
