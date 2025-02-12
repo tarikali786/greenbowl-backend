@@ -41,6 +41,8 @@ class UserAddress(UUIDMixin):
     pin_code = models.CharField(max_length=20, blank=True, null=True)
     
 
+    
+
     class Meta:
         verbose_name = "User Address"
         verbose_name_plural = "User Addresses"
