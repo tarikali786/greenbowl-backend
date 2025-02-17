@@ -57,9 +57,12 @@ class Salad(UUIDMixin):
         return round(sum(ingredient.get_calories_per_100g() for ingredient in self.ingredients.all()), 2)
 
     def save(self, *args, **kwargs):
-        self.calories = self.calculate_total_calories()
-        super().save(*args, **kwargs)
+        if not self.pk:  # If the object is new and doesn't have an ID
+            super().save(*args, **kwargs)  # Save it first to get an ID
 
+        self.calories = self.calculate_total_calories()
+        super().save(*args, **kwargs) 
+    
     @property
     def reviews_count(self):
         return self.reviews.count()
