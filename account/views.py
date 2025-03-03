@@ -34,7 +34,7 @@ class GoogleLogin(APIView):
             email = data.get("email")
             name = data.get("name")
             if not email or not name:
-                return Response({"error": "Failed to retrieve required user data from Google."}, status=400)
+                return Response({"message": "Failed to retrieve required user data from Google."}, status=status.HTTP_404_NOT_FOUND)
 
             # Check if the user exists or needs to be created
             user, created = Account.objects.get_or_create(email=email)
@@ -63,12 +63,11 @@ class GoogleLogin(APIView):
                     "verify": False
                 }, status=200)
         else:
-            return Response({"error": "Invalid token"}, status=400)
+            return Response({"message": "Invalid token"}, status=status.HTTP_404_NOT_FOUND)
 
 
 class RegisterAccountView(APIView):
     def post(self, request):
-        # Deserialize request data
         serializer = AccountSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         
@@ -80,7 +79,8 @@ class RegisterAccountView(APIView):
         # Check if account already exists
         account_exists = Account.objects.filter(Q(email=email) | Q(phone=phone)).exists()
         if account_exists:
-            return Response({"detail": "User already exists."}, status=status.HTTP_400_BAD_REQUEST)
+
+            return Response({"message": "User already exists with this email or phone"}, status=status.HTTP_400_BAD_REQUEST)
 
         # Create new user account
         user = Account.objects.create(name=name, email=email, phone=phone, username=name + phone)
@@ -95,12 +95,12 @@ class RegisterAccountView(APIView):
         
         # Send OTP via SMS
         sms_response = send_otp_sms(phone, otp)
-        if not sms_response["success"]:
-            return Response({"message": "Failed to send OTP.", "error": sms_response["error"]}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+        # if not sms_response["success"]:
+        #     return Response({"message": "Failed to send OTP.", "error": sms_response["error"]}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
         # Return response after account creation and OTP sending
         return Response(
-            {"message": "Account created successfully. OTP sent to your phone.", "access_token": access_token},
+            {"message": "Account created successfully. OTP sent to your phone.", "otp":otp, "access_token": access_token},
             status=status.HTTP_201_CREATED
         )
 
@@ -119,8 +119,8 @@ class LoginView(APIView):
         otp = generate_otp()
         store_otp(phone, otp)
         sms_response = send_otp_sms(phone, otp)
-        if not sms_response["success"]:
-            return Response({"message": "Failed to send OTP.", "error": sms_response["error"]}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+        # if not sms_response["success"]:
+        #     return Response({"message": "Failed to send OTP.", "error": sms_response["error"]}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
         refresh = RefreshToken.for_user(user)
         access_token = str(refresh.access_token)
@@ -128,6 +128,7 @@ class LoginView(APIView):
         return Response({
             "message": "OTP sent successfully",
             "access_token": access_token,
+            "otp":otp
         }, status=status.HTTP_200_OK)
 
 class AccountGoogleLogin(APIView):
@@ -147,7 +148,7 @@ class AccountGoogleLogin(APIView):
         if existing_user:
             # If the phone number exists and is verified, return error
             if existing_user.is_verified:
-                return Response({"message": "This phone number is already associated with another verified account."}, status=400)
+                return Response({"message": "This phone number is already associated with another verified account."}, status=status.HTTP_404_NOT_FOUND)
 
             # If the phone exists but is not verified, send OTP for verification
             otp = generate_otp()
@@ -162,8 +163,8 @@ class AccountGoogleLogin(APIView):
         otp = generate_otp()
         store_otp(phone, otp)
         sms_response = send_otp_sms(phone, otp)
-        if not sms_response["success"]:
-            return Response({"message": "Failed to send OTP.", "error": sms_response["error"]}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+        # if not sms_response["success"]:
+        #     return Response({"message": "Failed to send OTP.", "error": sms_response["error"]}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
         # Update user phone and save
         user.phone = phone
@@ -171,10 +172,11 @@ class AccountGoogleLogin(APIView):
 
         # Generate access token
         refresh = RefreshToken.for_user(user)
-
+ 
         return Response({
             "message": "OTP sent successfully for phone verification.",
             "access_token": str(refresh.access_token),
+            "otp":otp
         }, status=200)
     
 class SendOTPCode(APIView):
@@ -190,7 +192,7 @@ class SendOTPCode(APIView):
 
         if sms_response["success"]:
             return Response({'message': 'OTP sent successfully!'}, status=status.HTTP_200_OK)
-        return Response({'error': 'Failed to send OTP.'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+        return Response({'message': 'Failed to send OTP.'}, status=status.HTTP_404_NOT_FOUND)
 
 class VerifyOTPCode(APIView):
 
@@ -204,7 +206,7 @@ class VerifyOTPCode(APIView):
         user = request.user
 
         if not user_otp:
-            return Response({"error": "Please enter a valid OTP."}, status=status.HTTP_400_BAD_REQUEST)
+            return Response({"message": "Please enter a valid OTP."}, status=status.HTTP_400_BAD_REQUEST)
 
         stored_otp_data = get_stored_otp(user.phone)  # Assuming phone_number is stored in the user model
 
@@ -275,6 +277,7 @@ class CreateUserAddressAPIView(APIView):
     
 
 class UserAddressViewSet(viewsets.ModelViewSet):
+
     queryset = UserAddress.objects.all()
     serializer_class = UserAddressSerializer
     permission_classes = [IsAuthenticated]
@@ -287,3 +290,19 @@ class UserAddressViewSet(viewsets.ModelViewSet):
     def perform_create(self, serializer):
         """Assign the logged-in user to the address before saving."""
         serializer.save(user=self.request.user)
+
+
+class UserDetailsView(APIView):
+    permission_classes = [IsAuthenticated]
+    def get (self, request):
+        user = request.user.uid
+        try:
+            user_details = Account.objects.filter(uid=user).prefetch_related("addresses",'orders')
+            if user_details.exists():
+                serializer = UserDetailSerializer(user_details.first())
+
+                return Response({"data":serializer.data}, status=status.HTTP_200_OK)
+            return Response({'message':"User Not  Found"}, status=status.HTTP_404_NOT_FOUND)
+        
+        except Exception as e:
+            return Response ({"message":e},status=status.HTTP_400_BAD_REQUEST)

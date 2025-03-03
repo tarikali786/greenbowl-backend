@@ -9,4 +9,6 @@ urlpatterns=[
    path('verify-otp/', VerifyOTPCode.as_view(), name='verify-otp'),
    path('create-user-address/', UserAddressViewSet.as_view({"get": "list", "post": "create"}), name='user-address'),
    path("user-address/<uuid:uid>/", UserAddressViewSet.as_view({"get": "retrieve",  "patch": "partial_update", "delete": "destroy"})),
+   path('user-details/', UserDetailsView.as_view(), name='uuser-detials'),
+
 ]

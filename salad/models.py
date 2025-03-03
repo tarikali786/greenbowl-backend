@@ -52,16 +52,7 @@ class Salad(UUIDMixin):
     available = models.BooleanField(default=True, help_text="Is salad available?")
     salad_type = models.CharField(max_length=20, choices=SaladType.choices, help_text="Salad type")
 
-    def calculate_total_calories(self):
-        """Calculate total calories from ingredients."""
-        return round(sum(ingredient.get_calories_per_100g() for ingredient in self.ingredients.all()), 2)
-
-    def save(self, *args, **kwargs):
-        if not self.pk:  # If the object is new and doesn't have an ID
-            super().save(*args, **kwargs)  # Save it first to get an ID
-
-        self.calories = self.calculate_total_calories()
-        super().save(*args, **kwargs) 
+    
     
     @property
     def reviews_count(self):

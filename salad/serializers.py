@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Ingredient, Salad
+from .models import Ingredient, Salad, Order
 
 class PaymentIntentSerializer(serializers.Serializer):
     amount = serializers.IntegerField(required=True)
@@ -22,3 +22,9 @@ class SaladSerializer(serializers.ModelSerializer):
     class Meta:
         model = Salad
         fields = '__all__'  # Includes all model fields
+
+
+class UserOrderSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Order
+        fields ='__all__'
