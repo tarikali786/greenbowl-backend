@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Ingredient, Salad, Order
+from .models import Ingredient, Salad, Order, Recipe
 
 class PaymentIntentSerializer(serializers.Serializer):
     amount = serializers.IntegerField(required=True)
@@ -28,3 +28,12 @@ class UserOrderSerializer(serializers.ModelSerializer):
     class Meta:
         model = Order
         fields ='__all__'
+
+
+class RecipeSerializer(serializers.ModelSerializer):
+   
+    ingredients = IngredientSerializer(many=True, read_only=True)
+    class Meta:
+        model = Recipe
+        fields = ['uid', 'name', 'user', 'ingredients', 'total_price']
+        extra_kwargs = {'user': {'read_only': True}}

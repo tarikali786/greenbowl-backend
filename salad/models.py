@@ -47,22 +47,12 @@ class Salad(UUIDMixin):
     description = models.TextField(null=True, blank=True, help_text="Salad description")
     image = models.ImageField(upload_to=upload_location, null=True, blank=True, help_text="Image of the salad")
     ingredients = models.ManyToManyField(Ingredient, related_name='salads', help_text="Ingredients in the salad")
-    calories = models.DecimalField(max_digits=10, decimal_places=2, editable=False, null=True, blank=True)
+    calories = models.DecimalField(max_digits=10, decimal_places=2,  null=True, blank=True)
     price = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True, help_text="Salad price")
     available = models.BooleanField(default=True, help_text="Is salad available?")
     salad_type = models.CharField(max_length=20, choices=SaladType.choices, help_text="Salad type")
 
-    
-    
-    @property
-    def reviews_count(self):
-        return self.reviews.count()
 
-    @property
-    def average_rating(self):
-        if self.reviews.exists():
-            return round(self.reviews.aggregate(models.Avg('rating'))['rating__avg'], 2)
-        return 0
 
     class Meta:
         db_table = 'salad'
@@ -86,8 +76,16 @@ class Review(UUIDMixin):
     def __str__(self):
         return f"Review for {self.salad.name} by {self.reviewer.username}"
 
-
+class Recipe(UUIDMixin):
+    name=models.CharField(max_length=250, null=True, blank=True, help_text="Recipe name")
+    user = models.ForeignKey(Account, on_delete=models.CASCADE, related_name='recipe', help_text="The user who placed the order")
+    ingredients = models.ManyToManyField(Ingredient, related_name='recipe', help_text="Ingredients in the custom order")
+    total_price = models.DecimalField(max_digits=10, decimal_places=2, help_text="Total price of the order")
+    def __str__(self):
+        return self.name or "Unnamed Recipe"
+    
 class OrderStatus(models.TextChoices):
+    Placed = 'placed', 'placed'
     PENDING = 'pending', 'Pending'
     COMPLETED = 'completed', 'Completed'
     CANCELED = 'canceled', 'Canceled'

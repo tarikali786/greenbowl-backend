@@ -6,8 +6,10 @@ from rest_framework import status
 from salad.serializers import PaymentIntentSerializer
 from salad.models import *
 from django.db.models import Q
-from salad.serializers import *
+import uuid
 
+from salad.serializers import *
+from rest_framework.permissions import IsAuthenticated
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
 class CreatePaymentIntent(APIView):
@@ -81,3 +83,44 @@ class HomeSaladView(APIView):
         return Response(data, status=status.HTTP_200_OK)
     
 
+class RecipeAPIView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        """Fetch all recipes of the logged-in user"""
+        recipes = Recipe.objects.filter(user=request.user)
+        serializer = RecipeSerializer(recipes, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+    def post(self, request):
+        data = request.data.copy()
+        data["user"] = request.user.id  
+
+        ingredient_uuids = request.data.get("ingredients", [])
+
+        valid_uuids = []
+        for uid in ingredient_uuids:
+            try:
+                valid_uuids.append(uuid.UUID(uid)) 
+            except (ValueError, TypeError): 
+                return Response(
+                    {"error": f"Invalid UUID format: {uid}"},
+                    status=status.HTTP_400_BAD_REQUEST
+                )
+
+        existing_ingredients = Ingredient.objects.filter(uid__in=valid_uuids)
+
+        if len(valid_uuids) != existing_ingredients.count():
+            return Response(
+                {"error": "One or more provided ingredient UUIDs do not exist."},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
+        serializer = RecipeSerializer(data=data)
+        if serializer.is_valid():
+            recipe = serializer.save(user=request.user) 
+            recipe.ingredients.set(existing_ingredients)  
+            return Response(RecipeSerializer(recipe).data, status=status.HTTP_201_CREATED)
+        
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
