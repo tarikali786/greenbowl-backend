@@ -77,12 +77,19 @@ class Review(UUIDMixin):
         return f"Review for {self.salad.name} by {self.reviewer.username}"
 
 class Recipe(UUIDMixin):
+    
     name=models.CharField(max_length=250, null=True, blank=True, help_text="Recipe name")
     user = models.ForeignKey(Account, on_delete=models.CASCADE, related_name='recipe', help_text="The user who placed the order")
     ingredients = models.ManyToManyField(Ingredient, related_name='recipe', help_text="Ingredients in the custom order")
     total_price = models.DecimalField(max_digits=10, decimal_places=2, help_text="Total price of the order")
+    class Meta:
+        ordering = ['-created_at']
+        
+    
     def __str__(self):
         return self.name or "Unnamed Recipe"
+    
+
     
 class OrderStatus(models.TextChoices):
     Placed = 'placed', 'placed'
@@ -91,6 +98,7 @@ class OrderStatus(models.TextChoices):
     CANCELED = 'canceled', 'Canceled'
 
 class Order(UUIDMixin):
+    name=models.CharField(max_length=250, null=True, blank=True, help_text="Recipe name")
     user = models.ForeignKey(Account, on_delete=models.CASCADE, related_name='orders', help_text="The user who placed the order")
     ingredients = models.ManyToManyField(Ingredient, related_name='orders', help_text="Ingredients in the custom order")
     total_price = models.DecimalField(max_digits=10, decimal_places=2, help_text="Total price of the order")

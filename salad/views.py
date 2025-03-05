@@ -56,7 +56,7 @@ class CreatePaymentIntent(APIView):
         
 
 class HomeSaladView(APIView):
-    def get(self, request,):
+    def get(self, request):
         base_ingredients = Ingredient.objects.filter(category='base')
         vegetable_ingredients = Ingredient.objects.filter(category='vegetable')
         topping_ingredients = Ingredient.objects.filter(category='topping')
@@ -124,3 +124,63 @@ class RecipeAPIView(APIView):
             return Response(RecipeSerializer(recipe).data, status=status.HTTP_201_CREATED)
         
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+
+    def delete(self, request, uid):
+        recipe = Recipe.objects.filter(uid=uid).first()
+        
+        if not recipe:
+            return Response({'message': "Recipe Not Found"}, status=status.HTTP_404_NOT_FOUND)
+
+        recipe.delete()
+        return Response({'message': "Recipe deleted successfully"}, status=status.HTTP_204_NO_CONTENT)
+
+
+
+class OrderAPIView(APIView):
+
+    permission_classes = [IsAuthenticated]
+
+
+    def post(self, request):
+        """Create a new order"""
+        ingredient_uuids = request.data.get("ingredients", [])
+
+        if not ingredient_uuids:
+            return Response({"error": "At least one ingredient is required."}, status=status.HTTP_400_BAD_REQUEST)
+
+        # Validate and filter valid UUIDs
+        try:
+            valid_uuids = [uuid.UUID(uid) for uid in ingredient_uuids]
+        except ValueError:
+            return Response({"error": "Invalid UUID format in ingredients."}, status=status.HTTP_400_BAD_REQUEST)
+
+        # Fetch ingredients from the database
+        ingredients = Ingredient.objects.filter(uid__in=valid_uuids)
+        if len(ingredients) != len(valid_uuids):
+            return Response({"error": "One or more ingredient UUIDs are invalid."}, status=status.HTTP_400_BAD_REQUEST)
+
+        # Create an Order
+        order = Order.objects.create(
+            user=request.user,
+            total_price=request.data.get('total_price', 0),
+            total_calories=request.data.get('total_calories', 0),
+            status="placed",
+            name=request.data.get('name', 'unnamed'),
+
+        )
+
+        # Assign ingredients to the order
+        order.ingredients.set(ingredients)
+
+        return Response(OrderSerializer(order).data, status=status.HTTP_201_CREATED)
+    
+
+class updateIngredientView(APIView):
+    def get(self, request):
+        data = Ingredient.objects.all()
+        for i in data:
+            print(i)
+
+        return Response("Some")
+    

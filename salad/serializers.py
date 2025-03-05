@@ -37,3 +37,12 @@ class RecipeSerializer(serializers.ModelSerializer):
         model = Recipe
         fields = ['uid', 'name', 'user', 'ingredients', 'total_price']
         extra_kwargs = {'user': {'read_only': True}}
+
+
+class OrderSerializer(serializers.ModelSerializer):
+    ingredients = IngredientSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Order  # FIXED: Changed from Recipe to Order
+        fields = ['uid', 'user', 'ingredients', 'total_price', 'total_calories', 'status', 'created_at']
+        extra_kwargs = {'user': {'read_only': True}}
