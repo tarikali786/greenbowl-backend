@@ -97,37 +97,21 @@ class RecipeAPIView(APIView):
         data = request.data.copy()
         data["user"] = request.user.id  
 
-        ingredient_uuids = request.data.get("ingredients", [])
-
-        valid_uuids = []
-        for uid in ingredient_uuids:
-            try:
-                valid_uuids.append(uuid.UUID(uid)) 
-            except (ValueError, TypeError): 
-                return Response(
-                    {"error": f"Invalid UUID format: {uid}"},
-                    status=status.HTTP_400_BAD_REQUEST
-                )
-
-        existing_ingredients = Ingredient.objects.filter(uid__in=valid_uuids)
-
-        if len(valid_uuids) != existing_ingredients.count():
-            return Response(
-                {"error": "One or more provided ingredient UUIDs do not exist."},
-                status=status.HTTP_400_BAD_REQUEST
-            )
-
-        serializer = RecipeSerializer(data=data)
+        serializer = RecipeSerializer(data=data, context={"request": request})  # ✅ Pass context here
         if serializer.is_valid():
-            recipe = serializer.save(user=request.user) 
-            recipe.ingredients.set(existing_ingredients)  
+            recipe = serializer.save(user=request.user)  
             return Response(RecipeSerializer(recipe).data, status=status.HTTP_201_CREATED)
-        
+
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
 
+
+
+
+
     def delete(self, request, uid):
         recipe = Recipe.objects.filter(uid=uid).first()
+        print(recipe)
         
         if not recipe:
             return Response({'message': "Recipe Not Found"}, status=status.HTTP_404_NOT_FOUND)
@@ -180,7 +164,8 @@ class updateIngredientView(APIView):
     def get(self, request):
         data = Ingredient.objects.all()
         for i in data:
-            print(i)
-
+            i.weight = 500
+            i.save()
+ 
         return Response("Some")
     

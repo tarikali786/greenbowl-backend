@@ -76,21 +76,48 @@ class Review(UUIDMixin):
     def __str__(self):
         return f"Review for {self.salad.name} by {self.reviewer.username}"
 
+
+
+
+
 class Recipe(UUIDMixin):
-    
-    name=models.CharField(max_length=250, null=True, blank=True, help_text="Recipe name")
+    """Stores recipes created by users"""
+    name = models.CharField(max_length=250, null=True, blank=True, help_text="Recipe name")
     user = models.ForeignKey(Account, on_delete=models.CASCADE, related_name='recipe', help_text="The user who placed the order")
-    ingredients = models.ManyToManyField(Ingredient, related_name='recipe', help_text="Ingredients in the custom order")
-    total_price = models.DecimalField(max_digits=10, decimal_places=2, help_text="Total price of the order")
+    total_price = models.DecimalField(max_digits=10, decimal_places=2, default=0, help_text="Total price of the order")
+    total_calories = models.DecimalField(max_digits=10, decimal_places=2, default=0, help_text="Total calories of the recipe")
+
     class Meta:
         ordering = ['-created_at']
-        
-    
+
+    def update_totals(self):
+        total_calories = sum(ri.calories for ri in self.recipe_ingredients.all())
+
+        self.total_calories = total_calories
+        self.save()
+
     def __str__(self):
         return self.name or "Unnamed Recipe"
-    
 
     
+class RecipeIngredients(UUIDMixin):
+    recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE, related_name="recipe_ingredients")
+    ingredient = models.ForeignKey(Ingredient, on_delete=models.CASCADE, related_name="ingredient_recipes")
+    weight = models.DecimalField(max_digits=6, decimal_places=3, default=0.250, help_text="Weight in kg (default 250g)")
+    price = models.DecimalField(max_digits=10, decimal_places=2, default=0, help_text="Price based on weight")
+    calories = models.DecimalField(max_digits=10, decimal_places=2, default=0, help_text="Calories based on weight")
+
+    class Meta:
+        unique_together = ('recipe', 'ingredient')
+
+    def __str__(self):
+        return f"{self.ingredient.name} - {self.weight}"
+
+
+
+
+
+
 class OrderStatus(models.TextChoices):
     Placed = 'placed', 'placed'
     PENDING = 'pending', 'Pending'
