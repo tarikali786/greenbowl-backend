@@ -17,8 +17,8 @@ class Ingredient(UUIDMixin):
         ('extra', 'Extra'),
     )
     name = models.CharField(max_length=250, null=True, blank=True, help_text="Ingredient name")
-    price = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True, help_text="Price per kg")
-    calories = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True, help_text="Calories per 100gram")  # Store numeric value
+    price = models.DecimalField(max_digits=10, decimal_places=3, null=True, blank=True, help_text="Price per kg")
+    calories = models.DecimalField(max_digits=6, decimal_places=3, null=True, blank=True, help_text="Calories per 100gram")  # Store numeric value
     weight = models.DecimalField(max_digits=6, decimal_places=3, null=True, blank=True, help_text="Weight in kilograms (kg)")
     category = models.CharField(max_length=20, choices=CATEGORY_CHOICES, null=True, blank=True, help_text="Ingredient category")
     description = models.TextField(null=True, blank=True, help_text="Ingredient description")  # Store string info like "5 kcal per 100g"
@@ -84,8 +84,8 @@ class Recipe(UUIDMixin):
     """Stores recipes created by users"""
     name = models.CharField(max_length=250, null=True, blank=True, help_text="Recipe name")
     user = models.ForeignKey(Account, on_delete=models.CASCADE, related_name='recipe', help_text="The user who placed the order")
-    total_price = models.DecimalField(max_digits=10, decimal_places=2, default=0, help_text="Total price of the order")
-    total_calories = models.DecimalField(max_digits=10, decimal_places=2, default=0, help_text="Total calories of the recipe")
+    total_price = models.DecimalField(max_digits=10, decimal_places=3, default=0, help_text="Total price of the order")
+    total_calories = models.DecimalField(max_digits=10, decimal_places=3, default=0, help_text="Total calories of the recipe")
 
     class Meta:
         ordering = ['-created_at']
@@ -103,9 +103,9 @@ class Recipe(UUIDMixin):
 class RecipeIngredients(UUIDMixin):
     recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE, related_name="recipe_ingredients")
     ingredient = models.ForeignKey(Ingredient, on_delete=models.CASCADE, related_name="ingredient_recipes")
-    weight = models.DecimalField(max_digits=6, decimal_places=3, default=0.250, help_text="Weight in kg (default 250g)")
-    price = models.DecimalField(max_digits=10, decimal_places=2, default=0, help_text="Price based on weight")
-    calories = models.DecimalField(max_digits=10, decimal_places=2, default=0, help_text="Calories based on weight")
+    weight = models.DecimalField(max_digits=10, decimal_places=3, default=0.250, help_text="Weight in kg (default 250g)")
+    price = models.DecimalField(max_digits=10, decimal_places=3, default=0, help_text="Price based on weight")
+    calories = models.DecimalField(max_digits=10, decimal_places=3, default=0, help_text="Calories based on weight")
 
     class Meta:
         unique_together = ('recipe', 'ingredient')
