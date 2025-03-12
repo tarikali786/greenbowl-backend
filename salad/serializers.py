@@ -64,28 +64,7 @@ class RecipeSerializer(serializers.ModelSerializer):
         return recipe
 
 
-    def update(self, instance, validated_data):
-        ingredients_data = validated_data.pop('ingredients', None)
-        instance.name = validated_data.get('name', instance.name)
-        instance.save()
-
-        if ingredients_data:
-            instance.recipe_ingredients.all().delete()  # Remove old ingredients
-
-            for item in ingredients_data:
-                try:
-                    ingredient = Ingredient.objects.get(uid=item['ingredient_id'])
-                    RecipeIngredient.objects.create(
-                        recipe=instance,
-                        ingredient=ingredient,
-                        weight=item['weight']
-                    )
-                except Ingredient.DoesNotExist:
-                    raise serializers.ValidationError(f"Ingredient with ID {item['ingredient_id']} does not exist.")
-
-            instance.update_totals()
-
-        return instance
+    
 
 
 

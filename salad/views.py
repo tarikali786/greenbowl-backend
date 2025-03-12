@@ -106,20 +106,67 @@ class RecipeAPIView(APIView):
     
 
 
+    
+
+
 
 
 
     def delete(self, request, uid):
         recipe = Recipe.objects.filter(uid=uid).first()
-        print(recipe)
         
         if not recipe:
             return Response({'message': "Recipe Not Found"}, status=status.HTTP_404_NOT_FOUND)
 
         recipe.delete()
         return Response({'message': "Recipe deleted successfully"}, status=status.HTTP_204_NO_CONTENT)
+    
+
+class RecipeUpdateAPIView(APIView):
+    def put(self, request, uid):
+        """Delete the old recipe and create a new one"""
+        try:
+            old_recipe = Recipe.objects.get(uid=uid)
+            old_recipe.delete()  # Delete existing recipe
+        except Recipe.DoesNotExist:
+            return Response({"error": "Recipe not found"}, status=status.HTTP_404_NOT_FOUND)
+
+        # Create a new recipe
+        serializer = RecipeSerializer(data=request.data)
+        if serializer.is_valid():
+            with transaction.atomic():
+                new_recipe = serializer.save()
+
+                # Add ingredients if provided
+                ingredients_data = request.data.get('ingredients', [])
+                for item in ingredients_data:
+                    try:
+                        ingredient = Ingredient.objects.get(uid=item['ingredient_id'])
+                        RecipeIngredients.objects.create(
+                            recipe=new_recipe,
+                            ingredient=ingredient,
+                            weight=item['weight']
+                        )
+                    except Ingredient.DoesNotExist:
+                        return Response({"error": f"Ingredient {item['ingredient_id']} not found"}, status=status.HTTP_400_BAD_REQUEST)
+
+                new_recipe.update_totals()  # Update total price & calories
+
+            return Response(RecipeSerializer(new_recipe).data, status=status.HTTP_201_CREATED)
+
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
+class GetRecipeDetails(APIView):
+    def get(self, request, uid):
+        recipe = Recipe.objects.filter(uid=uid).first()
+        
+        if not recipe:
+            return Response({'message': "Recipe Not Found"}, status=status.HTTP_404_NOT_FOUND)
+
+        return Response({'data':RecipeSerializer(recipe).data }, status=status.HTTP_200_OK)
+
+ 
 
 class OrderAPIView(APIView):
 
